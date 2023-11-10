@@ -43,7 +43,7 @@ header > p {
     width: 80%;
 }
 
-@media screen and (orientation:portrait) {
+@media screen and (max-width: 1000px) {
     #main-content{
         display: flex;
         flex-direction: column;
