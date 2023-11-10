@@ -1,22 +1,17 @@
-let api_url = '/api/inventory/json'
-// not sure what is going on here yet...
-function update_table() {
-    tableHTML = document.getElementById('movies-table');
-    fetch(api_url)
-    .then(res => {
-        res.json()
-    })
+let href = window.location.href;
+href = href.substring(0, href.lastIndexOf('/')) + "/";
+
+function redirect_query() {
+    let searchBar = document.getElementById('search-bar');
+    let api_read = href + "?query=" + searchBar.value;
+    window.location.href = api_read;
 }
 
+function check_in_out() {
+    console.log("TODO");
+}
 
-
-
-
-
-
-
-
-searchBtn = document.getElementById('search-button');
+let searchBtn = document.getElementById('search-button');
 searchBtn.addEventListener('click', () => {
-    update_table()
+    redirect_query();
 })
