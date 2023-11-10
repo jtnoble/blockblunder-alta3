@@ -10,32 +10,58 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../static/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../static/script.js"></script>
     <title>BlockBlunder Video</title>
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
           <a class="navbar-brand me-3" href="#">BlockBlunder</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item me-3">
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item me-3">
-                <a class="nav-link active" aria-current="page" href="/search">Detailed Search</a>
+                <a class="nav-link active" aria-current="page" href="/search"
+                  >Detailed Search</a
+                >
               </li>
               <li class="nav-item me-3">
                 <a class="nav-link" href="/about">About</a>
               </li>
             </ul>
-            <form class="d-flex ms-auto" role="search" action="javascript:void(0);">
-              <input id='search-bar' class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button id='search-button' class="btn btn-outline-success">Search</button>
+            <form
+              class="d-flex ms-auto"
+              role="search"
+              action="javascript:void(0);"
+            >
+              <input
+                id="search-bar"
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button
+                id="search-button"
+                class="btn btn-outline-success"
+                onclick="redirect_query()"
+              >
+                Search
+              </button>
             </form>
           </div>
         </div>
@@ -62,10 +88,14 @@
             <tbody>
               {% for movie in movies %}
               <tr>
+                <td class="movie-id" hidden="true">{{ movie.id }}</td>
                 <td>{{ movie.title|title }}</td>
                 <td>{{ movie.year }}</td>
                 <td>{{ movie.genres }}</td>
-                <td>{{ movie.checked_out }} <button onclick="check_in_out()">Checkin/out</button></td>
+                <td class="movie-checkout">
+                  {{ movie.checked_out }}
+                  <button onclick="check_in_out(this)">Checkin/out</button>
+                </td>
               </tr>
               {% endfor %}
             </tbody>
@@ -73,8 +103,26 @@
         </div>
       </div>
     </div>
+    <!-- Note: This is semi-broken, as on the index page with specified query (e.g., decade=1990), it will page over to a regular page instead (e.g., now decade=<nothing>) -->
+    <div class="pagination">
+      {% if pagination.has_prev %}
+      <a href="{{ url_for('index', page=pagination.prev_num) }}">« Previous</a>
+      {% else %}
+      <span class="disabled">« Previous</span>
+      {% endif %} {% for page_num in pagination.pages %} {% if page_num %} {% if
+      page_num == pagination.page %}
+      <span class="current">{{ page_num }}</span>
+      {% else %}
+      <a href="{{ url_for('index', page=page_num) }}"> {{ page_num }} </a>
+      {% endif %} {% else %}
+      <span class="ellipsis">…</span>
+      {% endif %} {% endfor %} {% if pagination.has_next %}
+      <a href="{{ url_for('index', page=pagination.next_num) }}">Next »</a>
+      {% else %}
+      <span class="disabled">Next »</span>
+      {% endif %}
+    </div>
 
-    <script src="../static/script.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

@@ -10,7 +10,7 @@ body{
 a:link, a:visited {
     color: #FFA903;
 }
-header{
+header, nav{
     background-color: #0E3FA9;
 }
 header > p {
@@ -20,13 +20,34 @@ header > p {
 #main-content{
     display: flex;
     flex-direction: column;
+    position: relative;
+    padding-top: 75px;
 }
 #blockblunder_logo{
     margin: auto;
     display: flex;
     justify-content: center;
     width: 30%;
-    margin-top: 10px;
     height: fit-content;
     
+}
+#bottom-content, #about-section, #movies {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    margin-top: 10px;
+}
+#movies {
+    width: 80%;
+}
+
+@media screen and (orientation:portrait) {
+    #main-content{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding-top: 225px;
+    }
 }

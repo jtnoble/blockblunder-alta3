@@ -15,27 +15,49 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
           <a class="navbar-brand me-3" href="#">BlockBlunder</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item me-3">
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item me-3">
-                <a class="nav-link active" aria-current="page" href="/search">Detailed Search</a>
+                <a class="nav-link active" aria-current="page" href="/search"
+                  >Detailed Search</a
+                >
               </li>
               <li class="nav-item me-3">
                 <a class="nav-link" href="/about">About</a>
               </li>
             </ul>
-            <form class="d-flex ms-auto" role="search" action="javascript:void(0);">
-              <input id='search-bar'class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button id='search-button' class="btn btn-outline-success">Search</button>
+            <form
+              class="d-flex ms-auto"
+              role="search"
+              action="javascript:void(0);"
+            >
+              <input
+                id="search-bar"
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button id="search-button" class="btn btn-outline-success">
+                Search
+              </button>
             </form>
           </div>
         </div>
@@ -47,17 +69,91 @@
         src="/static/images/blockblunder_logo.png"
         alt="BlockBlunder Logo"
       />
-      <div id="search">
-        <h5>Search:</h5>
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      </div>
-      <div id="genres">
-        <h5>Genres:</h5>
-        <ul></ul>
-      </div>
-      <div id="decades">
-        <h5>Decades:</h5>
-        <ul></ul>
+      <div id="bottom-content">
+        <div id="search">
+          <h5>Search:</h5>
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+        </div>
+        <div id="genres">
+          <select
+            id="selected-genre"
+            class="form-select"
+            aria-label="Default select example"
+          >
+            <option selected>Genre</option>
+            <option value="Action">Action</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Animated">Animated</option>
+            <option value="Biography">Biography</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Crime">Crime</option>
+            <option value="Dance">Dance</option>
+            <option value="Disaster">Disaster</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Drama">Drama</option>
+            <option value="Erotic">Erotic</option>
+            <option value="Family">Family</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Found Footage">Found Footage</option>
+            <option value="Historical">Historical</option>
+            <option value="Horror">Horror</option>
+            <option value="Independent">Independent</option>
+            <option value="Legal">Legal</option>
+            <option value="Live Action">Live Action</option>
+            <option value="Martial Arts">Martial Arts</option>
+            <option value="Musical">Musical</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Noir">Noir</option>
+            <option value="Performance">Performance</option>
+            <option value="Political">Political</option>
+            <option value="Romance">Romance</option>
+            <option value="Satire">Satire</option>
+            <option value="Science Fiction">Science Fiction</option>
+            <option value="Short">Short</option>
+            <option value="Silent">Silent</option>
+            <option value="Slasher">Slasher</option>
+            <option value="Sport">Sport</option>
+            <option value="Sports">Sports</option>
+            <option value="Spy">Spy</option>
+            <option value="Superhero">Superhero</option>
+            <option value="Supernatural">Supernatural</option>
+            <option value="Suspense">Suspense</option>
+            <option value="Teen">Teen</option>
+            <option value="Thriller">Thriller</option>
+            <option value="War">War</option>
+            <option value="Western">Western</option>
+          </select>
+        </div>
+        <div id="decades">
+          <select
+            id="selected-decade"
+            class="form-select"
+            aria-label="Default select example"
+          >
+            <option selected>Decade</option>
+            <option value="1900">1900</option>
+            <option value="1910">1910</option>
+            <option value="1920">1920</option>
+            <option value="1930">1930</option>
+            <option value="1940">1940</option>
+            <option value="1950">1950</option>
+            <option value="1960">1960</option>
+            <option value="1970">1970</option>
+            <option value="1980">1980</option>
+            <option value="1990">1990</option>
+            <option value="2000">2000</option>
+            <option value="2010">2010</option>
+            <option value="2020">2020</option>
+          </select>
+        </div>
+        <button class="btn btn-success" onclick="detailed_search()">
+          Search
+        </button>
       </div>
     </div>
 
